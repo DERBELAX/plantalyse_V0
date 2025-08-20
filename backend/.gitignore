@@ -1,0 +1,54 @@
+HELP.md
+
+# === Maven / Build ===
+target/
+build/
+dist/
+.mvn/wrapper/maven-wrapper.jar
+dependency-reduced-pom.xml
+
+# Garder certains dossiers si besoin
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# === Fichiers sensibles ===
+*.env
+.env
+
+# === Tests / logs / debug ===
+*.log
+*.out
+*.tmp
+*.pid
+hs_err_pid*
+
+# === IDE: STS / Eclipse ===
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+*.launch
+
+# === IDE: IntelliJ IDEA ===
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# === IDE: NetBeans ===
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+# === IDE: VS Code ===
+.vscode/
+
+# === OS-specific ===
+.DS_Store
+Thumbs.db
