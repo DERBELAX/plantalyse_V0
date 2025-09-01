@@ -1,0 +1,7 @@
+# build & deps
+build/
+node_modules/
+
+# env locaux
+.env
+.env.*
