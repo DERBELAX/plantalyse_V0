@@ -1,0 +1,159 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f5f3eb;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.navbar.scrolled {
+  background-color: rgba(245, 243, 235, 0.6);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.navbar .nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  transition: padding 0.3s ease;
+  flex-wrap: nowrap;
+ overflow: visible;
+  min-height: 72px;
+}
+
+.navbar.scrolled .nav-container {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.logo-image {
+  transition: height 0.3s ease;
+  height: 80px;
+}
+
+.navbar.scrolled .logo-image {
+  height: 48px;
+}
+
+.logo-wrapper {
+  min-width: 160px;
+  display: flex;
+  align-items: center;
+}
+
+.site-name {
+  font-weight: 600;
+  line-height: 1;
+}
+
+.desktop-menu {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 1rem;
+}
+
+.nav-right {
+  flex-shrink: 0;
+  min-width: 180px;
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.user-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 100;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  min-width: 160px;
+}
+
+.mobile-menu {
+  overflow: hidden;
+  background-color: #f5f3eb;
+  padding: 1rem;
+  border-top: 1px solid #ccc;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1144px) and (min-width: 1022px) {
+  .desktop-menu {
+    gap: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .nav-right span {
+    display: none;
+  }
+
+  .logo-wrapper {
+    min-width: 120px;
+  }
+}
+/* Responsive */
+@media (max-width: 1023px) and (min-width: 890px) {
+  .desktop-menu {
+    gap: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .nav-right span {
+    display: none;
+  }
+
+  .logo-wrapper {
+    min-width: 120px;
+  }
+  .site-name {
+    display: none;
+  }
+}
+
+
+@media (max-width: 888px) {
+  .nav-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+  }
+
+  .desktop-menu {
+    display: none !important;
+  }
+
+  
+
+  .nav-right {
+    gap: 1rem;
+    min-width: auto;
+  }
+
+  .mobile-toggle {
+    display: flex;
+    align-items: center;
+  }
+}

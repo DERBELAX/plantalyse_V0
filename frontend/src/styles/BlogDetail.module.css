@@ -1,0 +1,30 @@
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+@media (min-width: 768px) {
+  .grid {
+    flex-direction: row;
+  }
+}
+.leftColumn {
+  flex: 1;
+}
+.rightColumn {
+  flex: 2;
+}
+.mainImage {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.description {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}

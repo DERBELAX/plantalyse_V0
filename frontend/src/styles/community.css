@@ -1,0 +1,47 @@
+/* Espacement entre slides */
+.slick-slide > div {
+  padding: 0 0.5rem;
+}
+
+.slick-list {
+  margin: 0 -0.5rem;
+}
+
+/* Pagination dots */
+.slick-dots li button:before {
+  font-size: 12px;
+  color: #2E3B2B;
+}
+.slick-dots li.slick-active button:before {
+  color: #15803d;
+}
+
+/* Overlay sur image */
+.overlay {
+  @apply absolute bottom-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-lg flex gap-2 items-center opacity-0 transition-opacity;
+}
+
+.icon {
+  @apply text-sm hover:text-red-400 transition;
+}
+
+.group:hover .overlay {
+  @apply opacity-100;
+}
+
+/* Modal */
+.modal-backdrop {
+  @apply fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center;
+}
+
+.modal-content {
+  @apply bg-white rounded-xl overflow-hidden w-full max-w-3xl h-[80vh] flex;
+}
+
+.modal-img {
+  @apply w-1/2 object-cover h-full;
+}
+
+.modal-details {
+  @apply p-6 w-1/2 overflow-y-auto;
+}
