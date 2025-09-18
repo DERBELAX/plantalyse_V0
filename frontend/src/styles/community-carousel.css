@@ -1,0 +1,49 @@
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.8); /* Cercle blanc semi-transparent */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  background-color: rgba(255, 255, 255, 1); /* plus opaque au hover */
+}
+
+.carousel-arrow.left {
+  left: 10px;
+}
+
+.carousel-arrow.right {
+  right: 10px;
+}
+
+.carousel-arrow svg {
+  color: #c0baba; 
+  font-size: 20px;
+}
+/* optionnel : amélioration générale */
+.slick-slide > div {
+  padding: 0 0.75rem;
+}
+
+.slick-list {
+  margin: 0 -0.75rem;
+}
+
+.slick-dots li button:before {
+  font-size: 12px;
+  color: #2E3B2B;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #15803d;
+}
