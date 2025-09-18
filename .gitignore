@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+.Trash/
+*.swp
+
+# Logs
+*.log
+
+# Sensitive
+.env
+
+# Uploads or build artifacts (if not needed in git)
+uploads/
