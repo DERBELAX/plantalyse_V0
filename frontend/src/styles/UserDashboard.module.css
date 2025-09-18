@@ -1,0 +1,24 @@
+.tabContainer {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+ 
+}
+
+.tabButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-weight: bold;
+   
+}
+
+.tabActive {
+  border-color: green;
+  color: green;
+}
+
+.tabContent{
+    background-color: rgb(252, 252, 252);
+}
