@@ -11,3 +11,36 @@
 
 # Uploads or build artifacts (if not needed in git)
 uploads/
+
+# ===== OS / IDE =====
+.DS_Store
+.Trash/
+*.swp
+.idea/
+.vscode/
+*.iml
+
+# ===== Java / Maven =====
+backend/target/
+# gardez le wrapper Maven si vous l'utilisez
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+
+# ===== Node / React =====
+frontend/node_modules/
+frontend/build/
+
+# ===== Logs =====
+*.log
+logs/
+
+# ===== Docker / données locales =====
+mysql_data/
+
+# ===== Uploads (garder le dossier vide dans Git) =====
+uploads/*
+!uploads/.gitkeep
+
+# ===== Secrets =====
+.env
+backend/src/main/resources/application-prod.properties
