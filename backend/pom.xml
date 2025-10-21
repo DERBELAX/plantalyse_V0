@@ -78,7 +78,7 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Configuration processor -->
+    <!-- Config processor -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-configuration-processor</artifactId>
@@ -91,7 +91,6 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
       <exclusions>
-        <!-- Reste sur JUnit Jupiter -->
         <exclusion>
           <groupId>org.junit.vintage</groupId>
           <artifactId>junit-vintage-engine</artifactId>
@@ -101,6 +100,12 @@
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-inline</artifactId>
+      <version>5.2.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -115,6 +120,8 @@
       <artifactId>jsoup</artifactId>
       <version>1.17.2</version>
     </dependency>
+
+    <!-- JWT -->
     <dependency>
       <groupId>io.jsonwebtoken</groupId>
       <artifactId>jjwt-api</artifactId>
@@ -132,6 +139,8 @@
       <version>0.11.5</version>
       <scope>runtime</scope>
     </dependency>
+
+    <!-- Stripe -->
     <dependency>
       <groupId>com.stripe</groupId>
       <artifactId>stripe-java</artifactId>
@@ -141,7 +150,6 @@
 
   <build>
     <plugins>
-
       <!-- Compiler -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -159,13 +167,16 @@
         </configuration>
       </plugin>
 
-      <!-- Surefire (tests unitaires) -->
+      <!-- Surefire (tests) -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.1.2</version>
+        <version>3.2.5</version>
         <configuration>
-          <!-- Préserve argLine injectée par JaCoCo -->
+          <includes>
+            <include>**/*Test.java</include>
+            <include>**/*IT.java</include>
+          </includes>
           <argLine>${argLine}</argLine>
           <systemPropertyVariables>
             <spring.profiles.active>test</spring.profiles.active>
@@ -173,29 +184,21 @@
         </configuration>
       </plugin>
 
-      <!-- JaCoCo (couverture) -->
+      <!-- JaCoCo -->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.8.12</version>
         <executions>
-          <!-- Injecte l’agent avant les tests -->
           <execution>
             <id>prepare-agent</id>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
+            <goals><goal>prepare-agent</goal></goals>
           </execution>
-
-          <!-- Rapport HTML/CSV/XML à verify -->
           <execution>
             <id>report</id>
             <phase>verify</phase>
-            <goals>
-              <goal>report</goal>
-            </goals>
+            <goals><goal>report</goal></goals>
             <configuration>
-              <!-- Exclusions alignées avec le check -->
               <excludes>
                 <exclude>**/PlantalysBackendApplication*</exclude>
                 <exclude>**/config/**</exclude>
@@ -206,14 +209,10 @@
               </excludes>
             </configuration>
           </execution>
-
-          <!-- Vérification du seuil -->
           <execution>
             <id>check</id>
             <phase>verify</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
+            <goals><goal>check</goal></goals>
             <configuration>
               <rules>
                 <rule>
@@ -240,7 +239,7 @@
         </executions>
       </plugin>
 
-      <!-- Spring Boot repackage -->
+      <!-- Spring Boot -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
@@ -248,23 +247,6 @@
           <mainClass>com.example.plantalysBackend.PlantalysBackendApplication</mainClass>
         </configuration>
       </plugin>
-<<<<<<< HEAD
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-surefire-plugin</artifactId>
-      <version>3.2.5</version>
-      <configuration>
-        <includes>
-          <include>**/*Test.java</include>
-          <include>**/*IT.java</include>
-        </includes>
-        <argLine>-Dspring.profiles.active=test</argLine>
-      </configuration>
-    </plugin>
-=======
-
->>>>>>> origin/feat/gitignore-docker
     </plugins>
   </build>
-
 </project>
