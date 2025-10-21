@@ -1,0 +1,67 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: plantalys_mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: plantalys
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret123
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-psecret123"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: plantalys_phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    depends_on:
+      - mysql
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: plantalys_backend
+    ports:
+      - "8085:8080"
+    volumes:
+      - ./uploads:/app/uploads    
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/plantalys?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: myuser
+      SPRING_DATASOURCE_PASSWORD: secret
+      SPRING_PROFILES_ACTIVE: prod
+      UPLOADS_DIR: /app/uploads
+      APP_FRONTEND_REDIRECT_URI: http://localhost:3001/oauth2/redirect
+      JWT_SECRET: Ndj37hFdhs82JslaaLAJdksnD38HsksOQwpeLAJSi28shSuw82DkqhsDksjqhs82
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: plantalys_frontend
+    ports:
+      - "3001:80"
+    environment:
+      REACT_APP_API_URL: http://localhost:8085
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
