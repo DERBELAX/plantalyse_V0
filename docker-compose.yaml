@@ -31,12 +31,12 @@ services:
     restart: unless-stopped
 
   backend:
-    build: ./backend
+    build: ./backend          
     container_name: plantalys_backend
     ports:
       - "8085:8080"
     volumes:
-      - ./uploads:/app/uploads    
+      - ./uploads:/app/uploads
     depends_on:
       mysql:
         condition: service_healthy
@@ -53,7 +53,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    build: ./frontend
+    build: ./frontend         
     container_name: plantalys_frontend
     ports:
       - "3001:80"

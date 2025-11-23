@@ -14,10 +14,11 @@ import BestSellers from "../plants/BestSellers";
 
 
 const categories = [
-  { name: "Plantes d'intérieur", image: indoorImage, link: "/products?type=intérieur" },
-  { name: "Plantes d'extérieur", image: outdoorImage, link: "/products?type=extérieur" },
+  { name: "Plantes d'intérieur", image: indoorImage, link: "/products?category_id=1" },
+  { name: "Plantes d'extérieur", image: outdoorImage, link: "/products?category_id=2" },
   { name: "Toutes les plantes", image: allPlantsImage, link: "/products" },
 ];
+
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);

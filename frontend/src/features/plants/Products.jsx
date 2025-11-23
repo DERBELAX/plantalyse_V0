@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import styles from '../../styles/Products.module.css';
 
-
 const Products = () => {
   const [plants, setPlants] = useState([]);
   const [error, setError] = useState(false);
@@ -14,17 +13,28 @@ const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
-  const type = searchParams.get("type") || "";
+  const categoryId = searchParams.get("category_id"); 
   const searchParam = searchParams.get("search") || "";
 
   useEffect(() => {
-    axios.get("/api/plants")
-      .then((res) => setPlants(res.data))
-      .catch((err) => {
+    const fetchPlants = async () => {
+      try {
+        let url = "/api/plants";
+
+        if (categoryId) {
+          url = `/api/plants/by-category/${categoryId}`;
+        }
+
+        const res = await axios.get(url);
+        setPlants(res.data);
+      } catch (err) {
         console.error("Erreur lors du chargement des plantes", err);
         setError(true);
-      });
-  }, []);
+      }
+    };
+
+    fetchPlants();
+  }, [categoryId]);
 
   useEffect(() => {
     setSearch(searchParam);
@@ -32,7 +42,6 @@ const Products = () => {
 
   const filteredPlants = plants
     .filter((plant) =>
-      (!type || plant.category?.name?.toLowerCase().includes(type.toLowerCase())) &&
       plant.name.toLowerCase().includes(search.toLowerCase())
     )
     .sort((a, b) => {

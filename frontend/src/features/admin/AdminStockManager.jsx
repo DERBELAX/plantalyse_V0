@@ -5,6 +5,11 @@ import axios from "axios";
 function AdminStockAManager() {
   const [plants, setPlants] = useState([]);
   const [loading, setLoading] = useState(true);
+  const categoriesMap = {
+  1: "Plantes d'intérieur",
+  2: "Plantes d'extérieur",
+};
+
 
   useEffect(() => {
     const fetchStock = async () => {
@@ -45,9 +50,9 @@ function AdminStockAManager() {
                   <tr key={plant.id} className="border-t hover:bg-gray-50">
                     <td className="px-4 py-2 border">{plant.name}</td>
                     <td className="px-4 py-2 border">
-                      {plant.category?.name || <span className="text-gray-500 italic">Non catégorisé</span>}
-
+                      {categoriesMap[plant.category_id] || <span className="text-gray-500 italic">Non catégorisé</span>}
                     </td>
+
                     <td
                       className={`px-4 py-2 border ${
                         plant.stock <= 3 ? "text-red-600 font-bold" : ""
